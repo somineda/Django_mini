@@ -1,15 +1,37 @@
 version: "3.9"
 
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: django_mini_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=django_mini
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django123
+    ports:
+      - "5432:5432"
+
   web:
     build:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: django_mini_14
-    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+    command: uv run gunicorn core.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ..:/app
     ports:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=core.settings
+      - DB_NAME=django_mini
+      - DB_USER=django
+      - DB_PASSWORD=django123
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

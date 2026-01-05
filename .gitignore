@@ -26,6 +26,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
+.uv/
 
 htmlcov/
 .tox/

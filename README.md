@@ -162,6 +162,4 @@ uv run python manage.py migrate
 - Gunicorn 23.0.0
 - PostgreSQL 16 (데이터베이스)
 - uv (패키지 관리)
-# Django_mini
-# Django_mini
-# Django_mini
+
