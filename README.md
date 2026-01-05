@@ -164,3 +164,4 @@ uv run python manage.py migrate
 - uv (패키지 관리)
 # Django_mini
 # Django_mini
+# Django_mini
